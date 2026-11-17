@@ -11,7 +11,7 @@ Requirement IDs refer to `requirements.md`.
 - [x] 1.5 Create steering documents and a test hook
 
 ## Phase 2: Foundation, landing page and navigation (R1, R2, N1, N2, N5)
-- [ ] 2.1 Scaffold Vite + React + TypeScript, install Tailwind, Framer Motion, Lucide, React Router, Vitest
+- [x] 2.1 Scaffold Vite + React + TypeScript, install Tailwind, Framer Motion, Lucide, React Router, Vitest
 - [ ] 2.2 Configure design tokens, self-hosted fonts, global styles, focus styles
 - [ ] 2.3 Build ui components: Button, GlassPanel, Badge, EmptyState, LoadingState, ErrorState
 - [ ] 2.4 Build AppShell, Navigation, MobileMenu, Footer
