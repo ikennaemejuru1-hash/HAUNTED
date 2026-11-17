@@ -200,18 +200,37 @@ Pages are lazy-loaded.
 
 ### Colour tokens
 
+No purple, violet or blue is used anywhere in the visual design.
+
 | Token | Hex | Use |
 |---|---|---|
-| `obsidian` | #08070D | Main background (dominant) |
-| `midnight` | #241137 | Panels, gradients, depth |
-| `violet` | #8138C8 | Supernatural glow, focus accents, selected states |
-| `gold` | #C5A15B | Headings, borders, premium details, primary button |
+| `obsidian` | #0A0908 | Main background (dominant) |
+| `charcoal` | #1E1B1C | Panels, gradients, depth |
 | `burgundy` | #641B35 | Horror details, hover surfaces, dividers |
-| `silver` | #C8C8D4 | Body text |
-| `phantom` | #3C73D9 | Futuristic labels, holographic edges, links |
-| `ember` | #E87524 | Small accent for active or warning states only |
+| `gold` | #C5A15B | Primary accent: headings, borders, focus rings, primary button |
+| `ember` | #E87524 | Selective highlights, glows, selected and active states, warnings |
+| `ash` | #8A8786 | Technical labels, glass edges, secondary text, disabled hints |
+| `silver` | #CFCBC6 | Body text (warm silver) |
 
-Contrast rules: body text uses `silver` on `obsidian` (about 12:1). Gold on obsidian is about 8:1. Text on burgundy must be white or silver, never gold at small sizes. Violet is used for glows and large elements, not small text. Every pair is checked in Phase 8.
+Measured contrast ratios (WCAG relative luminance):
+
+| Pair | Ratio | Verdict |
+|---|---|---|
+| silver on obsidian | 12.3:1 | AAA, body text |
+| silver on charcoal | 10.6:1 | AAA, body text |
+| gold on obsidian | 8.2:1 | AAA |
+| gold on charcoal | 7.0:1 | AAA |
+| ember on obsidian | 6.6:1 | AA, fine for text |
+| ember on charcoal | 5.7:1 | AA, fine for text |
+| ash on obsidian | 5.6:1 | AA, labels and secondary text |
+| ash on charcoal | 4.8:1 | AA, labels and secondary text |
+| silver on burgundy | 7.4:1 | AAA |
+| gold on burgundy | 4.9:1 | AA, large or bold text only |
+| ember on burgundy | 4.0:1 | Fails for small text. Never put ember text on burgundy |
+| obsidian on gold | 8.2:1 | Primary button text |
+| obsidian on ember | 6.6:1 | Text on ember fills |
+
+Rules: gold is the main accent and ember is used sparingly. Ember appears in glows, selected states and small highlights, never as large fills. Text on burgundy is silver. Every pair is re-checked in Phase 9.
 
 ### Typography
 
@@ -230,16 +249,16 @@ Each aesthetic owns one job, so they never fight:
 | Aesthetic | Owns | Visible in |
 |---|---|---|
 | Gothic luxury | Structure | Serif headings, gold hairline borders, generous space, ornamental corners |
-| Haunted fantasy | Atmosphere | Slow fog, small drifting motes, violet glow |
+| Haunted fantasy | Atmosphere | Slow fog, small drifting motes, soft ember glow |
 | Horror cinema | Mood | Deep vignette, burgundy shadows, dramatic light from above |
-| Futuristic Halloween | Interface | Glass panels (blurred, translucent), thin blue edges, technical labels |
+| Futuristic Halloween | Interface | Glass panels (blurred, translucent), thin ash-grey edges, technical labels |
 
 Rule: black dominates, one glow colour per screen region, at most one decorative effect per viewport.
 
 ### Components
 
-- **Button**: primary (gold fill, obsidian text), secondary (gold outline), ghost. All have visible focus rings (2px violet plus 2px offset) and a 44px minimum height.
-- **GlassPanel**: `bg-midnight/40`, backdrop blur, 1px border at gold 25%, subtle inner glow.
+- **Button**: primary (gold fill, obsidian text), secondary (gold outline), ghost. All have visible focus rings (2px gold plus 2px offset) and a 44px minimum height.
+- **GlassPanel**: `bg-charcoal/40`, backdrop blur, 1px border at gold 25%, subtle inner glow.
 - **AnswerOption**: a large card with icon, label and a gold check when selected. It has role radio or checkbox.
 - **Badge**: Space Grotesk, uppercase, small.
 - **Motion**: durations 150 to 400 ms, ease-out. The reveal is the only longer animation (up to 6 s, skippable). A `useReducedMotion` hook switches variants off.

@@ -9,7 +9,7 @@ The brief and the attached PDF blueprint disagree in a few places. These decisio
 
 | Topic | Brief | PDF blueprint | Decision |
 |---|---|---|---|
-| Colour palette | Obsidian, Midnight Purple, Royal Violet, Gold, Burgundy, Silver, Phantom Blue | Burgundy, Gold, Charcoal, Warm Grey, Burnt Orange | Use the brief's palette. Add Burnt Orange `#E87524` as one small accent for active states and warnings only. |
+| Colour palette | Obsidian, Midnight Purple, Royal Violet, Gold, Burgundy, Silver, Phantom Blue | Burgundy, Gold, Charcoal, Warm Grey, Burnt Orange | **Changed by the owner.** Use the PDF direction with no purple, violet or blue: Obsidian `#0A0908`, Charcoal `#1E1B1C`, Burgundy `#641B35`, Antique Gold `#C5A15B` (primary accent), Ember Orange `#E87524` (selective highlights, glows, selected and active states), Ash Grey `#8A8786`, Warm Silver `#CFCBC6`. |
 | Futuristic font | Space Grotesk | Orbitron on page 1, Space Grotesk on page 6 | Space Grotesk. |
 | Default currency | NGN, USD, GBP selector | NGN examples | Quiz budget tiers are stored in USD. The selector converts for display using fixed, clearly labelled approximate rates in one config file. |
 | Images | AI-generated asset family | Pre-generated visuals | Kiro cannot generate photos. Phase 2 ships original SVG/CSS artwork as placeholders. Real AI images can be dropped into `public/assets/` later with no code change. |
