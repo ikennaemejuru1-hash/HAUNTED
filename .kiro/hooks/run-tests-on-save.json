@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run unit tests when source code is saved",
+      "trigger": "PostFileSave",
+      "description": "Runs the Vitest suite once after a TypeScript file in src/ is saved, so engine mistakes show up early.",
+      "matcher": "src/.*\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "if [ -f package.json ]; then npx vitest run --reporter=dot 2>&1 | tail -n 20; else echo \"No package.json yet, skipping tests.\"; fi",
+        "timeout": 120
+      }
+    }
+  ]
+}
