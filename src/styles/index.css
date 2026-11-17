@@ -1,0 +1,81 @@
+/* Fonts are bundled with the app (no requests to Google), which protects visitor privacy. */
+@import '@fontsource-variable/cinzel';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import 'tailwindcss';
+
+/*
+  Design tokens. Tailwind 4 reads them from here instead of tailwind.config.ts.
+  A name like --color-gold creates classes such as bg-gold, text-gold, border-gold.
+  Palette is fixed by the spec: no purple, violet or blue.
+*/
+@theme {
+  --color-obsidian: #0a0908; /* main background */
+  --color-charcoal: #1e1b1c; /* panels and depth */
+  --color-burgundy: #641b35; /* horror details; text on it must be silver */
+  --color-gold: #c5a15b; /* primary accent */
+  --color-ember: #e87524; /* selective highlights, glows, selected states */
+  --color-ash: #8a8786; /* labels, secondary text, thin edges */
+  --color-silver: #cfcbc6; /* body text */
+
+  --font-display: 'Cinzel Variable', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-tech: 'Space Grotesk Variable', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-obsidian);
+    color: var(--color-silver);
+    font-family: var(--font-body);
+    /* Stops iOS from enlarging text unexpectedly. */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px; /* the smallest screen we design for */
+    min-height: 100vh;
+    overflow-x: hidden; /* guards against sideways scrolling */
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-gold);
+    letter-spacing: 0.02em;
+  }
+
+  /* One focus ring for every interactive element: 2px gold with a 2px gap. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Text selection stays on-palette. */
+  ::selection {
+    background: var(--color-burgundy);
+    color: var(--color-silver);
+  }
+
+  /* Anyone who asks their device for less motion gets almost none. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Small helper classes reused by many components. */
+@layer components {
+  /* Labels, badges, progress text: uppercase, spaced out, Space Grotesk. */
+  .label-tech {
+    font-family: var(--font-tech);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    color: var(--color-ash);
+  }
+}

@@ -15,7 +15,7 @@ The app has four layers. Each layer only talks to the one below it.
 |---|---|
 | React + TypeScript | Builds screens from components. TypeScript catches mistakes before the app runs. |
 | Vite | Runs the app while you develop and packages it for release. |
-| Tailwind CSS | Styles elements with short class names. Design tokens live in one config. |
+| Tailwind CSS | Styles elements with short class names. Design tokens live in one place: the `@theme` block in `src/styles/index.css` (Tailwind 4 reads tokens from CSS, not `tailwind.config.ts`). |
 | Framer Motion | Smooth page, quiz and reveal animations. |
 | Lucide React | Icon set. |
 | React Router (HashRouter) | Moves between pages. Hash routing means refresh and static hosting work without server setup. |
@@ -66,7 +66,7 @@ sandbox/
 │   │   ├── grimoire/         GrimoireView, SavedCostumeCard
 │   │   └── ui/               Button, Badge, Modal, EmptyState, LoadingState, ErrorState, GlassPanel
 │   ├── pages/                Home, Discover, Quiz, Awakening, Results, Atelier, Alchemist, Grimoire, About, NotFound
-│   └── styles/               index.css, tokens in tailwind.config.ts
+│   └── styles/               index.css, tokens in the @theme block of index.css
 ├── index.html
 ├── package.json
 └── README.md
