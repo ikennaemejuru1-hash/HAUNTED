@@ -12,7 +12,10 @@ The brief and the attached PDF blueprint disagree in a few places. These decisio
 | Colour palette | Obsidian, Midnight Purple, Royal Violet, Gold, Burgundy, Silver, Phantom Blue | Burgundy, Gold, Charcoal, Warm Grey, Burnt Orange | **Changed by the owner.** Use the PDF direction with no purple, violet or blue: Obsidian `#0A0908`, Charcoal `#1E1B1C`, Burgundy `#641B35`, Antique Gold `#C5A15B` (primary accent), Ember Orange `#E87524` (selective highlights, glows, selected and active states), Ash Grey `#8A8786`, Warm Silver `#CFCBC6`. |
 | Futuristic font | Space Grotesk | Orbitron on page 1, Space Grotesk on page 6 | Space Grotesk. |
 | Default currency | NGN, USD, GBP selector | NGN examples | Quiz budget tiers are stored in USD. The selector converts for display using fixed, clearly labelled approximate rates in one config file. |
-| Images | AI-generated asset family | Pre-generated visuals | Kiro cannot generate photos. Phase 2 ships original SVG/CSS artwork as placeholders. Real AI images can be dropped into `public/assets/` later with no code change. |
+| Images | AI-generated asset family | Pre-generated visuals | **Changed by the owner.** Kiro cannot generate images. The owner creates original 2D assets with ChatGPT image generation, following `docs/ASSET_BRIEF.md`. Kiro processes them (crop, resize, WebP/AVIF) into `public/assets/`. Until they arrive, procedural placeholders are used, and swapping in real assets needs no code change. |
+| Visual direction | Cinematic, immersive | Pre-generated visuals | **Changed by the owner.** The landing experience is "The Threshold": a real-time 3D world (Three.js with React Three Fiber) with layered animated fog, embers, candlelight and four procedural artefacts. GSAP drives cinematic and scroll motion. Framer Motion drives interface transitions. See R15 and design section 11. |
+| 3D artefacts | n/a | n/a | Built procedurally in Three.js. AI-generated 3D models are a possible later enhancement only. |
+| Awakening length | n/a | n/a | **Changed by the owner.** 8 to 10 seconds, always skippable, reduced-motion aware (R6). |
 | Quiz inputs | Q10 multi-select | Same | Q10 is multi-select. "Start from scratch" clears all other Q10 choices. |
 
 ## 1. Scope
@@ -34,7 +37,7 @@ Each requirement has an ID that tasks and tests refer to.
 ### R2 Landing page
 - R2.1 The hero shall show the heading "YOUR ALTER EGO IS WAITING.", the supporting line and the primary button "DISCOVER YOUR DARK SIDE".
 - R2.2 Secondary links "How It Works", "Explore Styles" and "About HAUNTED" shall scroll to a section or open the matching page.
-- R2.3 The hero shall have an animated fog or particle layer that sits behind all text and is switched off under reduced motion.
+- R2.3 The landing page shall be the Threshold experience described in R15. All of its text, navigation and controls shall be HTML that sits above the 3D layer.
 - R2.4 The Discovery Introduction shall explain the quiz (12 questions, 4 sections, about 3 minutes) and offer a Start button.
 
 ### R3 Quiz
@@ -72,11 +75,13 @@ Each requirement has an ID that tasks and tests refer to.
 - R5.6 Cost figures shall be shown as "estimates".
 
 ### R6 Awakening
-- R6.1 After submit the app shall show "YOUR IDENTITY IS TAKING SHAPE..." with animated particles for no more than 6 seconds.
-- R6.2 It shall then reveal "YOUR HALLOWEEN ALTER EGO HAS AWAKENED." and the identity card.
+- R6.1 After submit the app shall play a cinematic 3D reveal lasting 8 to 10 seconds. It shall show "YOUR IDENTITY IS TAKING SHAPE..." while the four artefacts orbit an altar and embers converge.
+- R6.2 The artefact of the primary aesthetic shall rise (for a hybrid, the primary and secondary artefacts shall merge). The light shall shift to the identity palette, the identity sigil shall draw itself, and the app shall reveal "YOUR HALLOWEEN ALTER EGO HAS AWAKENED." and the identity card.
+- R6.6 On devices in the lite tier (R15.8) the reveal shall use a 2D version (poster art, CSS fog and an SVG sigil) with the same text sequence and timing.
+- R6.7 The identity is computed before the reveal starts. The reveal is presentation only and shall never change the result.
 - R6.3 A visible Skip button shall jump straight to the results at any time. It shall be reachable by keyboard.
 - R6.4 Sound shall be off by default. It shall play only after the user turns on a sound toggle. The setting shall be remembered.
-- R6.5 With reduced motion on, the sequence shall be replaced by a short fade.
+- R6.5 With reduced motion on, the sequence shall be replaced by a short fade (1 second or less) to the identity card.
 
 ### R7 Results page
 - R7.1 It shall show identity name, description, primary aesthetic, secondary aesthetic, 3 recommendations with reasons, colour palette, budget information and styling advice.
@@ -130,9 +135,23 @@ Each requirement has an ID that tasks and tests refer to.
 - R14.3 It shall include a readable summary of requirements to tasks to tests (for example, which tests cover which requirement IDs).
 - R14.4 Navigation shall link to it from the footer and About page, not as a main nav item, so the product experience stays first.
 
+### R15 The Threshold: immersive 3D landing world (core, owner-approved)
+- R15.1 The landing page shall feel like entering a haunted world. A scroll-driven camera shall travel from outside a gothic gate, through the threshold, into a candlelit hall, and toward a final doorway.
+- R15.2 Fog and mist shall be visibly animated and layered (at least three depth layers on the full tier), drifting at different speeds.
+- R15.3 Rising embers, floating dust motes and flickering candlelight shall be part of the scene. Candle flicker shall be gentle and never flash (N3).
+- R15.4 The hall shall contain four procedural 3D artefacts, one per aesthetic: a gilded mirror (Velvet Enigma), a floating grimoire with orbiting runes (Arcane Wanderer), a cracked porcelain mask (Crimson Phantom) and a fractured lantern with ember circuitry (Neon Revenant).
+- R15.5 Artefacts shall respond subtly to the visitor: they drift toward the pointer, and when an identity is hovered, focused or tapped in the HTML Explore Styles list, its artefact turns toward the camera and its light strengthens with an effect that previews that identity's mood. Keyboard focus shall trigger the same response as hover.
+- R15.6 The 3D layer is decorative. It shall be `aria-hidden`, never contain information that is not also in HTML, and never be required to use the site.
+- R15.7 Pressing DISCOVER YOUR DARK SIDE shall play a short camera push through the doorway (under 1 second) and then open the Discovery Introduction.
+- R15.8 The app shall choose a quality tier automatically (full, balanced or lite) and lower it at runtime if the frame rate drops. The lite tier shall use poster art and CSS fog with no WebGL.
+- R15.9 Visitors shall be able to choose "Visual effects: Full / Lite" themselves. The choice shall be remembered in settings storage.
+- R15.10 Under reduced motion there shall be no scroll-driven camera, no drifting fog and no particle motion. A still frame of the scene or the poster shall be shown instead.
+- R15.11 If WebGL is unavailable or the context is lost, the page shall fall back to the lite tier without an error or a blank screen.
+- R15.12 The palette inside the 3D scene shall use only the approved tokens: obsidian, charcoal, burgundy, gold, ember, ash and silver. No purple or blue light, fog or material.
+
 ## 3. Priority and scope guard
 
-The core MVP (R1 to R11) has priority over R12 to R14. Rules:
+The core MVP (R1 to R11, plus R15 the Threshold) has priority over R12 to R14. Rules:
 - Work on R12 to R14 shall not start until Phases 2 to 7 pass their tests.
 - If time is short, R12 to R14 shall be dropped in the order R13, R12, R14. R14 is cheapest and judge-visible, so it is kept longest.
 - None of R12 to R14 may slow the quiz, engine or main flows. Their code is lazy-loaded.
@@ -142,7 +161,8 @@ The core MVP (R1 to R11) has priority over R12 to R14. Rules:
 - N1 Accessibility: WCAG 2.2 AA contrast for text, visible focus rings, semantic landmarks, labelled controls, radio and checkbox semantics for answers, `aria-live` for progress, alt text for meaningful images, `aria-hidden` for decorative ones.
 - N2 Reduced motion: honour `prefers-reduced-motion` for every animation, including the fog layer.
 - N3 No flashing effects (nothing flashes more than 3 times per second).
-- N4 Performance: Lighthouse performance 90 or more on mobile for the landing page; images in WebP or SVG; each catalogue image under 150 KB; route-level code splitting.
+- N4 Performance: Lighthouse mobile performance is measured separately for the lite experience and the full 3D experience. The target is 90 or more for both. A lower full-3D score is accepted when raising it would cost usability or visual quality, and the measured scores are recorded in `docs/PERFORMANCE.md`. Images in WebP or AVIF (SVG for vector art); each catalogue image under 150 KB; route-level code splitting.
+- N9 3D performance: the poster and HTML text render first and the 3D code loads afterwards, so the largest contentful paint never waits for WebGL. Budgets: landing JavaScript before 3D under 150 KB gzip; 3D chunk under 350 KB gzip; first-view images under 600 KB on mobile. Frame rate targets: 60 fps on the full tier on desktop, at least 30 fps on the balanced tier on a mid-range phone. Rendering pauses when the tab is hidden or the canvas is off screen.
 - N5 Mobile first: usable at 320px wide, tap targets at least 44px, no horizontal scrolling.
 - N6 Privacy: no personal data collected, no analytics, no network requests with user data.
 - N7 Browsers: current Chrome, Safari, Firefox and Edge.
@@ -170,6 +190,11 @@ The core MVP (R1 to R11) has priority over R12 to R14. Rules:
 | AC16 | Given a keyboard only, then the whole journey from Home to Grimoire can be completed with visible focus. |
 | AC17 | Given a 320px wide screen, then there is no horizontal scroll and all controls remain usable. |
 | AC18 | Given Atelier filters match nothing, then an empty state with Clear filters appears. |
+| AC19 | Given reduced motion or the lite tier, then the landing page shows the poster, all text and every control, with no WebGL animation. |
+| AC20 | Given WebGL is unavailable or the context is lost, then the page falls back to the lite tier with no error or blank screen. |
+| AC21 | Given the Awakening is playing, then it ends within 10 seconds, and Skip works at every moment. |
+| AC22 | Given keyboard focus on an identity in Explore Styles, then the matching artefact responds as it does on hover. |
+| AC23 | Given any screenshot of the 3D scene, then no region shows purple or blue hues (checked by an automated colour scan). |
 
 ## 6. Test plan
 
@@ -177,19 +202,26 @@ The core MVP (R1 to R11) has priority over R12 to R14. Rules:
 |---|---|---|
 | Unit | Vitest | Scoring, tie-breaks, hybrid naming, filters, ranking, reasons, budget and currency conversion, storage helpers, dataset validation. |
 | Component | Vitest + React Testing Library | Quiz validation, multi-select exclusivity, Previous/Next, filter panel, Grimoire save/remove, modal focus handling. |
-| End to end (Phase 8) | Playwright | Full journey on a mobile and a desktop viewport, refresh persistence. |
-| Accessibility (Phase 8) | axe checks + manual keyboard pass | Contrast, labels, focus order, reduced motion. |
-| Manual checklist | Written in `docs/TEST_CHECKLIST.md` (Phase 8) | Real device sizes: 320, 375, 768, 1280. |
+| End to end (Phase 9) | Playwright | Full journey on a mobile and a desktop viewport, refresh persistence. |
+| 3D logic | Vitest | Quality-tier choice, fallback on missing WebGL, reduced-motion switch, palette constants contain no purple or blue. Pure helpers only; WebGL is not run in unit tests. |
+| Visual checkpoints | Headless Chromium screenshots + colour scan | At each redesign checkpoint: desktop and mobile frames, lite tier, reduced motion. Headless uses software rendering, so screenshots prove the look but not the frame rate. |
+| Real devices | GitHub Pages preview | Frame rate and feel on the owner's phone and desktop. |
+| Accessibility (Phase 9) | axe checks + manual keyboard pass | Contrast, labels, focus order, reduced motion. |
+| Manual checklist | Written in `docs/TEST_CHECKLIST.md` (Phase 9) | Real device sizes: 320, 375, 768, 1280. |
 
 ## 7. Technical risks
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| Too much visual effect hurts readability and speed | Medium | High | Effects sit on a separate decorative layer behind content. Contrast checks. Reduced motion support. Lightweight CSS and canvas-free particles first. |
+| Too much visual effect hurts readability and speed | Medium | High | 3D sits on its own layer behind HTML. Text panels get a local scrim. Contrast checks on top of real frames. Reduced motion and Lite option. |
+| 3D is slow or hot on phones | High | High | Quality tiers, runtime downgrade, capped pixel ratio, paused rendering off screen, budgets in N9, real-device test on the Pages preview. |
+| WebGL missing or context lost | Low | High | Lite tier fallback (R15.11). |
+| Image generation adds blue or purple, or breaks style | High | Medium | Strict prompts in `docs/ASSET_BRIEF.md`, automated colour scan, colour grading to the palette during processing. |
+| Assets arrive late | Medium | Medium | Procedural placeholders; asset paths come from one manifest file. |
 | Engine gives poor or empty results for restrictive answers | Medium | High | Documented relaxation order (R4.10), stretch options (R4.12), a test matrix of answer combinations. |
-| No real AI images available in this environment | High | Medium | Original SVG/CSS art as placeholders. Image paths come from data, so images can be swapped later. |
+| No real AI images available in this environment | High | Medium | Owner generates them with ChatGPT image generation from the asset brief. Placeholders until then. |
 | Cost estimates look wrong in a local currency | Medium | Medium | Costs stored in USD, labelled estimates, fixed rates in one config file, checked before submission. |
 | Local Storage blocked or corrupted | Low | Medium | Safe read/write wrapper with try/catch, schema version, in-memory fallback. |
 | Scope creep before submission | High | High | Phases with approval gates. Must-have items first. |
-| Hosting needs a base path (GitHub Pages) | Medium | Medium | Use hash routing or a configured base path. Decided in Phase 9. |
+| Hosting needs a base path (GitHub Pages) | Medium | Medium | Hash routing plus a relative Vite base (`./`). A preview is published early to the `gh-pages` branch. |
 | Beginner finds code hard to follow | High | Medium | Small files, plain-language comments, an explanation after each phase. |

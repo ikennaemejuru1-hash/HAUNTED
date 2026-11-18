@@ -15,12 +15,25 @@ Requirement IDs refer to `requirements.md`.
 - [x] 2.2 Configure design tokens, self-hosted fonts, global styles, focus styles
 - [x] 2.3 Build ui components: Button, GlassPanel, Badge, EmptyState, LoadingState, ErrorState
 - [x] 2.4 Build AppShell, Navigation, MobileMenu, Footer
-- [ ] 2.5 Build FogLayer and ParticleField (reduced-motion aware)
-- [x] 2.6 Build Home (hero, How It Works, Explore Styles) and Discover intro
+- [~] 2.5 ~~Build FogLayer and ParticleField~~ Replaced by 2R.4 (lite CSS fog fallback) and 2R.5 (3D atmosphere)
+- [x] 2.6 Build Home (hero, How It Works, Explore Styles) and Discover intro (copy and structure kept; visuals are redesigned in 2R)
 - [ ] 2.7 Create placeholder pages and routes for all pages, plus NotFound
-- [ ] 2.8 Create SVG hero art and four aesthetic sigils
-- [ ] 2.9 Tests: routes render, mobile menu opens and closes with keyboard
-- [ ] 2.10 Checkpoint: explain, run tests, wait for approval
+- [~] 2.8 ~~Create SVG hero art and four aesthetic sigils~~ Hero art replaced by the Threshold (2R.6). Sigils move to 2R.7
+- [x] 2.9 Tests: routes render, mobile menu opens and closes with keyboard
+- [ ] 2.10 Checkpoint: explain, run tests, wait for approval (taken together with the 2R checkpoints)
+
+## Phase 2R: The Threshold redesign (R2.3, R15, N4, N9). Owner-approved
+Each step ends with headless-browser screenshots, a colour scan, an update of the Pages preview and a pause for approval.
+- [x] 2R.1 Update requirements, design and steering for the redesign
+- [ ] 2R.2 Write `docs/ASSET_BRIEF.md` (prompts, sizes, formats, rules) and present it for review
+- [ ] 2R.3 Early GitHub Pages preview on the `gh-pages` branch (relative base, deploy script)
+- [ ] 2R.4 3D foundation: install Three, R3F, Drei, GSAP; `WorldCanvas`, `SceneDirector`, `quality.ts` (+ tests), `palette.ts` (+ no-blue test), poster fallback, CSS fog, reduced motion, context-loss handling, Visual effects Full/Lite setting
+- [ ] 2R.5 Atmosphere: layered fog shader, embers, dust motes, candle flames, lighting, post effects on the full tier. **Checkpoint: visual review**
+- [ ] 2R.6 Threshold scene: procedural gate, arches, pillars; scroll camera (GSAP ScrollTrigger); chapters 0 to 3 aligned with the HTML sections; scrims for text. **Checkpoint: major visual review**
+- [ ] 2R.7 The four artefacts, ArtefactRig, focus/hover/tap responses, four sigils, Explore Styles chapter. **Checkpoint: visual review**
+- [ ] 2R.8 Doorway push transition into Discover; Discover page restyled to match
+- [ ] 2R.9 Integrate the owner's generated assets (process, colour scan, swap placeholders)
+- [ ] 2R.10 Measure: bundle sizes, Lighthouse lite and full, record in `docs/PERFORMANCE.md`; finish 2.7 routes. **Checkpoint: Phase 2 approval**
 
 ## Phase 3: Interactive quiz (R3, AC1 to AC3)
 - [ ] 3.1 Define quiz types and the 12 questions in `data/questions.ts`
@@ -43,13 +56,13 @@ Requirement IDs refer to `requirements.md`.
 - [ ] 4.8 Checkpoint (engine can be shown with a temporary debug view)
 
 ## Phase 5: Awakening and results (R6, R7, AC12)
-- [ ] 5.1 Build Awakening page with particles, text sequence, Skip, sound toggle
+- [ ] 5.1 Build the 3D Awakening (design 11.5): AwakeningScene, 8 to 10 s GSAP timeline, Skip, sound toggle, lite 2D version, reduced-motion fade
 - [ ] 5.2 Build IdentityReveal and IdentityCard
 - [ ] 5.3 Build Results page: identity, scores, palette, budget info, styling advice
 - [ ] 5.4 Build RecommendationCard with reasons
 - [ ] 5.5 Buttons: Explore, Save, Retake (with confirm), Copy result
 - [ ] 5.6 Empty state when no result exists
-- [ ] 5.7 Tests: skip works, results render from fixed answers, retake clears state
+- [ ] 5.7 Tests: skip works at every stage, reveal ends within 10 s, result identical with any tier, results render from fixed answers, retake clears state
 - [ ] 5.8 Checkpoint
 
 ## Phase 6: Atelier and Wardrobe Alchemist (R8, R9, AC10, AC18)
@@ -93,7 +106,7 @@ Drop order if time runs short: 8.B, then 8.A, keep 8.C.
 - [ ] 9.2 Add Playwright end-to-end journey (mobile and desktop)
 - [ ] 9.3 Accessibility pass: contrast, keyboard, labels, reduced motion
 - [ ] 9.4 Responsive pass at 320, 375, 768, 1280
-- [ ] 9.5 Performance pass: bundle size, image sizes, Lighthouse
+- [ ] 9.5 Performance pass: bundle size, image sizes, Lighthouse lite and full measured separately, real-device frame rate
 - [ ] 9.6 Fix all defects found
 - [ ] 9.7 Checkpoint
 
@@ -102,6 +115,6 @@ Drop order if time runs short: 8.B, then 8.A, keep 8.C.
 - [ ] 10.2 About page content and credits
 - [ ] 10.3 Add open-source licence (MIT unless you choose another)
 - [ ] 10.4 Confirm `.kiro` is committed and not ignored
-- [ ] 10.5 Deploy (GitHub Pages or Vercel) and test the live URL
+- [ ] 10.5 Deploy the final build to GitHub Pages (preview already running since 2R.3) and test the live URL
 - [ ] 10.6 Demo video script and checklist
 - [ ] 10.7 Re-check the official Kiroween 2026 rules and deadline before submitting
