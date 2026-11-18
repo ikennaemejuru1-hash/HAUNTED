@@ -79,3 +79,38 @@
     color: var(--color-ash);
   }
 }
+
+/* Hero atmosphere, built from tokens. These sit behind the text. */
+@layer components {
+  /* Dramatic burgundy light from above, like a spotlight in a dark theatre. */
+  .hero-light {
+    background:
+      radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--color-burgundy) 75%, transparent), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--color-charcoal) 90%, transparent), transparent 70%);
+  }
+  /* Darkens the corners like a film frame. */
+  .hero-vignette {
+    background: radial-gradient(ellipse at center, transparent 45%, var(--color-obsidian) 100%);
+  }
+  /* A soft dark halo keeps text readable over the artwork. */
+  .hero-text-shadow {
+    text-shadow: 0 1px 2px var(--color-obsidian);
+  }
+  /* A faint gold moon with a soft halo. Kept small and dim so it never competes with text. */
+  /* Hidden on small screens, where it would overlap the heading. */
+  .hero-moon {
+    display: none;
+    top: 9%;
+    right: 8%;
+    width: clamp(56px, 8vw, 96px);
+    aspect-ratio: 1;
+    border-radius: 9999px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-gold) 32%, transparent) 0%, color-mix(in srgb, var(--color-gold) 20%, transparent) 100%);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-gold) 45%, transparent),
+      0 0 60px 20px color-mix(in srgb, var(--color-gold) 14%, transparent);
+  }
+  @media (min-width: 1024px) {
+    .hero-moon { display: block; }
+  }
+}

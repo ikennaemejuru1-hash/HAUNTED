@@ -13,10 +13,10 @@ Requirement IDs refer to `requirements.md`.
 ## Phase 2: Foundation, landing page and navigation (R1, R2, N1, N2, N5)
 - [x] 2.1 Scaffold Vite + React + TypeScript, install Tailwind, Framer Motion, Lucide, React Router, Vitest
 - [x] 2.2 Configure design tokens, self-hosted fonts, global styles, focus styles
-- [ ] 2.3 Build ui components: Button, GlassPanel, Badge, EmptyState, LoadingState, ErrorState
-- [ ] 2.4 Build AppShell, Navigation, MobileMenu, Footer
+- [x] 2.3 Build ui components: Button, GlassPanel, Badge, EmptyState, LoadingState, ErrorState
+- [x] 2.4 Build AppShell, Navigation, MobileMenu, Footer
 - [ ] 2.5 Build FogLayer and ParticleField (reduced-motion aware)
-- [ ] 2.6 Build Home (hero, How It Works, Explore Styles) and Discover intro
+- [x] 2.6 Build Home (hero, How It Works, Explore Styles) and Discover intro
 - [ ] 2.7 Create placeholder pages and routes for all pages, plus NotFound
 - [ ] 2.8 Create SVG hero art and four aesthetic sigils
 - [ ] 2.9 Tests: routes render, mobile menu opens and closes with keyboard
