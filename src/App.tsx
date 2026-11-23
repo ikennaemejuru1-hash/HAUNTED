@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/layout/AppShell'
+import { GrimoireProvider } from './state/GrimoireContext'
 
 // Each page loads only when visited, which keeps the first load fast.
 const Home = lazy(() => import('./pages/Home'))
@@ -15,6 +16,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 // HashRouter keeps routes after a "#", so refresh and static hosting work with no server setup.
 export const AppRoutes = () => (
+  <GrimoireProvider>
   <Routes>
     <Route element={<AppShell />}>
       <Route index element={<Home />} />
@@ -28,6 +30,7 @@ export const AppRoutes = () => (
       <Route path="*" element={<NotFound />} />
     </Route>
   </Routes>
+  </GrimoireProvider>
 )
 
 export default function App() {

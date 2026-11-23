@@ -2,7 +2,8 @@ import { formatAmount } from '../../data/currency'
 import { IDENTITIES } from '../../data/identities'
 import type { Recommendation } from '../../types/engine'
 import type { Currency } from '../../types/quiz'
-import { Badge, Button, GlassPanel } from '../ui'
+import { SaveButton } from '../grimoire/SaveButton'
+import { Badge, GlassPanel } from '../ui'
 
 const KIND: Record<Recommendation['kind'], string | null> = { match: null, closest: 'Closest match', stretch: 'Stretch option' }
 
@@ -10,12 +11,10 @@ interface Props {
   rec: Recommendation
   rank: number
   currency: Currency
-  saved: boolean
-  onSave: () => void
 }
 
 // One costume recommendation with the reasons that led to it (R4.11, R7.1).
-export function RecommendationCard({ rec, rank, currency, saved, onSave }: Props) {
+export function RecommendationCard({ rec, rank, currency }: Props) {
   const c = rec.costume
   const kind = KIND[rec.kind]
   const cost = `${formatAmount(c.costUsd.min, currency)} to ${formatAmount(c.costUsd.max, currency)}`
@@ -45,9 +44,7 @@ export function RecommendationCard({ rec, rank, currency, saved, onSave }: Props
         </p>
       )}
       <div className="mt-auto pt-2">
-        <Button variant="secondary" onClick={onSave} aria-pressed={saved} aria-label={`${saved ? 'Saved' : 'Save'}: ${c.name}`}>
-          {saved ? 'Saved' : 'Save'}
-        </Button>
+        <SaveButton id={c.id} name={c.name} />
       </div>
     </GlassPanel>
   )

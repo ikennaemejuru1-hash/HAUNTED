@@ -18,3 +18,20 @@ export function writeItem(key: string, value: string): void {
     // Blocked storage: the in-memory copy keeps the setting for this visit.
   }
 }
+
+// True when Local Storage can really be written. Used to show a gentle "this visit only" notice.
+export function storageWorks(): boolean {
+  try {
+    const probe = 'haunted:probe'
+    window.localStorage.setItem(probe, '1')
+    window.localStorage.removeItem(probe)
+    return true
+  } catch {
+    return false
+  }
+}
+
+// Tests only: forget the in-memory copies so one test cannot leak saved data into the next.
+export function forgetMemory(): void {
+  memory.clear()
+}

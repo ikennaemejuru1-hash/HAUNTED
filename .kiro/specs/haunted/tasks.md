@@ -66,22 +66,22 @@ Each step ends with headless-browser screenshots, a colour scan, an update of th
 - [x] 5.8 Checkpoint
 
 ## Phase 6: Atelier and Wardrobe Alchemist (R8, R9, AC10, AC18)
-- [ ] 6.1 Build CostumeCard, AtelierGrid, FilterPanel (mobile drawer)
-- [ ] 6.2 Combine filters, empty state, clear filters
-- [ ] 6.3 Build CostumeDetailModal (focus trap, Escape, focus return)
-- [ ] 6.4 Build Alchemist panel (owned, missing, styling, extra cost)
-- [ ] 6.5 Image lazy loading and fallback
-- [ ] 6.6 Tests: each filter, combined filters, modal keyboard behaviour, alchemist budget rule
-- [ ] 6.7 Checkpoint
+- [x] 6.1 Build CostumeCard, AtelierGrid, FilterPanel (mobile drawer)
+- [x] 6.2 Combine filters, empty state, clear filters
+- [x] 6.3 Build CostumeDetailModal (focus trap, Escape, focus return)
+- [x] 6.4 Build Alchemist panel (owned, missing, styling, extra cost)
+- [x] 6.5 Image lazy loading and fallback
+- [x] 6.6 Tests: each filter, combined filters, modal keyboard behaviour, alchemist budget rule
+- [x] 6.7 Checkpoint
 
 ## Phase 7: Grimoire and Local Storage (R10, AC13, AC14)
-- [ ] 7.1 Build GrimoireContext (versioned storage)
-- [ ] 7.2 Wire Save buttons everywhere with a consistent state
-- [ ] 7.3 Build GrimoireView, SavedCostumeCard, empty state
-- [ ] 7.4 Show saved identity and a link back to recommendations
-- [ ] 7.5 Handle blocked storage, bad data, unknown ids
-- [ ] 7.6 Tests: save, remove, persist, corrupt data, blocked storage
-- [ ] 7.7 Checkpoint
+- [x] 7.1 Build GrimoireContext (versioned storage)
+- [x] 7.2 Wire Save buttons everywhere with a consistent state
+- [x] 7.3 Build GrimoireView, SavedCostumeCard, empty state
+- [x] 7.4 Show saved identity and a link back to recommendations
+- [x] 7.5 Handle blocked storage, bad data, unknown ids
+- [x] 7.6 Tests: save, remove, persist, corrupt data, blocked storage
+- [x] 7.7 Checkpoint
 
 ## Phase 8: Signature features (R12 to R14). Start only when Phases 2 to 7 pass.
 Drop order if time runs short: 8.B, then 8.A, keep 8.C.

@@ -52,8 +52,8 @@ describe('routes (R1, R2)', () => {
   it.each([
     ['/discover', 'Discover Your Dark Side'],
     ['/quiz', 'The HAUNTED quiz'],
-    ['/atelier', 'The Costume Atelier opens soon'],
-    ['/grimoire', 'Your Grimoire is empty for now'],
+    ['/atelier', 'The Costume Atelier'],
+    ['/grimoire', 'Your Grimoire'],
     ['/about', 'About HAUNTED'],
   ])('%s renders', async (path, heading) => {
     renderAt(path)
@@ -98,6 +98,6 @@ describe('mobile menu (R1.2)', () => {
     await user.click(await screen.findByRole('button', { name: 'Open menu' }))
     await user.click(within(screen.getByRole('navigation', { name: 'Mobile' })).getByRole('link', { name: 'Atelier' }))
     expect(screen.queryByRole('navigation', { name: 'Mobile' })).not.toBeInTheDocument()
-    expect(await screen.findByRole('heading', { name: 'The Costume Atelier opens soon' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'The Costume Atelier' })).toBeInTheDocument()
   })
 })

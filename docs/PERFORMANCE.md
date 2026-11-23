@@ -31,3 +31,21 @@ Not measured yet. Lighthouse needs a real browser run against the GitHub Pages p
 ## Frame rate
 
 The sandbox renders WebGL in software (SwiftShader), so its frame rates do not represent real devices. Real-device checks happen on the Pages preview. Drei's `PerformanceMonitor` steps the tier down (full to balanced to lite) if the frame rate stays low.
+
+## Final bundle sizes (after Phases 6 and 7, Atelier, Grimoire, About)
+
+Vite reports the 3D code as two chunks now: `WorldCanvas` and the shared `Atmosphere` chunk.
+
+| What | Gzip | Budget (gzip) | Verdict |
+|---|---|---|---|
+| App entry `index-*.js` | 94.8 kB | | |
+| Framer Motion chunk `proxy-*.js` | 46.3 kB | | |
+| Home page chunk | 3.2 kB | | |
+| **Landing JS before 3D** (entry + Framer Motion + Home) | **144.3 kB** | under 150 kB | Pass |
+| **3D** (`WorldCanvas` 88.9 kB + `Atmosphere` 246.8 kB) | **335.7 kB** | under 350 kB | Pass |
+| Atelier page | 4.2 kB | | Loaded only on visit |
+| Grimoire page | 1.5 kB | | Loaded only on visit |
+| About page | 1.6 kB | | Loaded only on visit |
+| Styles | 7.6 kB | | |
+
+Atelier, Grimoire and About add no dependencies and never load the 3D chunk.

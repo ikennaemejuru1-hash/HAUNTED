@@ -10,7 +10,7 @@ import { AESTHETIC_ORDER, IDENTITIES } from '../data/identities'
 import { QUESTIONS } from '../data/questions'
 import { QuizProvider } from '../state/QuizContext'
 import { useResult } from '../state/useResult'
-import { useSavedLooks } from '../state/useSavedLooks'
+import { useGrimoire } from '../state/grimoireContextValue'
 import type { RecommendationResult } from '../types/engine'
 import type { QuizAnswers } from '../types/quiz'
 
@@ -18,14 +18,14 @@ const timeLabel = (a: QuizAnswers) => QUESTIONS.find((q) => q.key === 'time')?.o
 
 function ResultsView({ result, answers, onRetake }: { result: RecommendationResult; answers: QuizAnswers; onRetake: () => void }) {
   const { identity, recommendations, notices } = result
-  const { data, saveResult, saveCostume } = useSavedLooks()
+  const grimoire = useGrimoire()
   const [confirming, setConfirming] = useState(false)
   const [status, setStatus] = useState('')
   const profile = IDENTITIES[identity.primary]
   const second = IDENTITIES[identity.secondary]
   const advice = identity.isHybrid ? [...profile.advice.slice(0, 2), second.advice[0]] : profile.advice
   const ids = recommendations.map((r) => r.costume.id)
-  const allSaved = data.identity === identity.name && ids.every((id) => data.costumes.includes(id))
+  const allSaved = grimoire.identity?.name === identity.name && ids.every((id) => grimoire.isSaved(id))
   const maxScore = Math.max(...Object.values(identity.scores), 1)
 
   const copy = async () => {
@@ -57,8 +57,6 @@ function ResultsView({ result, answers, onRetake }: { result: RecommendationResu
                 rec={r}
                 rank={i + 1}
                 currency={answers.currency}
-                saved={data.costumes.includes(r.costume.id)}
-                onSave={() => saveCostume(r.costume.id)}
               />
             </li>
           ))}
@@ -106,13 +104,13 @@ function ResultsView({ result, answers, onRetake }: { result: RecommendationResu
       <GlassPanel className="bg-obsidian/75 p-5">
         <div className="flex flex-wrap items-center gap-3">
           <Button to={`/atelier?aesthetic=${identity.primary}`}>Explore my costumes</Button>
-          <Button variant="secondary" onClick={() => saveResult(identity.name, ids)} aria-pressed={allSaved}>
+          <Button variant="secondary" onClick={() => grimoire.saveResult({ name: identity.name, primary: identity.primary, secondary: identity.secondary }, ids)} aria-pressed={allSaved}>
             {allSaved ? 'Saved to my Grimoire' : 'Save to my Grimoire'}
           </Button>
           <Button variant="ghost" onClick={copy}>Copy my result</Button>
           <Button variant="ghost" onClick={() => setConfirming(true)}>Retake the quiz</Button>
         </div>
-        <p role="status" className="mt-3 min-h-5 text-sm text-ash">{status || (allSaved ? 'Saved on this device only.' : '')}</p>
+        <p role="status" className="mt-3 min-h-5 text-sm text-ash">{status || (allSaved ? (grimoire.persistent ? 'Saved on this device only.' : 'Saved for this visit only. Your browser is blocking storage.') : '')}</p>
         {confirming && (
           <div role="alertdialog" aria-labelledby="retake-title" aria-describedby="retake-desc" className="mt-3 rounded-sm border border-ember/60 p-4">
             <p id="retake-title" className="font-display text-lg">Retake the quiz?</p>
