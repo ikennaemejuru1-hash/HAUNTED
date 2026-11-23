@@ -51,7 +51,7 @@ describe('routes (R1, R2)', () => {
 
   it.each([
     ['/discover', 'Discover Your Dark Side'],
-    ['/quiz', 'The quiz is on its way'],
+    ['/quiz', 'The HAUNTED quiz'],
     ['/atelier', 'The Costume Atelier opens soon'],
     ['/grimoire', 'Your Grimoire is empty for now'],
     ['/about', 'About HAUNTED'],
@@ -69,7 +69,7 @@ describe('routes (R1, R2)', () => {
   it('Discover explains the quiz and Start opens it', async () => {
     renderAt('/discover')
     await userEvent.click(await screen.findByRole('link', { name: 'Start the quiz' }))
-    expect(await screen.findByRole('heading', { name: 'The quiz is on its way' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'The HAUNTED quiz' })).toBeInTheDocument()
   })
 })
 

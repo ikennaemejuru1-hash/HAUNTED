@@ -36,14 +36,14 @@ Each step ends with headless-browser screenshots, a colour scan, an update of th
 - [~] 2R.10 Measure (bundle sizes recorded in `docs/PERFORMANCE.md`; Lighthouse and 2.7 still open): bundle sizes, Lighthouse lite and full, record in `docs/PERFORMANCE.md`; finish 2.7 routes. **Checkpoint: Phase 2 approval**
 
 ## Phase 3: Interactive quiz (R3, AC1 to AC3)
-- [ ] 3.1 Define quiz types and the 12 questions in `data/questions.ts`
-- [ ] 3.2 Build `utils/storage.ts` and `useLocalStorage`
-- [ ] 3.3 Build QuizContext with validation and persistence
-- [ ] 3.4 Build QuizShell, ProgressBar, QuestionCard, AnswerOption, MultiSelectGrid, CurrencySelect
-- [ ] 3.5 Q10 exclusivity ("scratch"), Q7 currency display
-- [ ] 3.6 Section headers, transitions, selected-answer animation
-- [ ] 3.7 Tests: validation, previous/next, answer changes, multi-select rules, refresh persistence, corrupt storage
-- [ ] 3.8 Checkpoint
+- [x] 3.1 Define quiz types and the 12 questions in `data/questions.ts`
+- [x] 3.2 Build `utils/storage.ts` and `useLocalStorage`
+- [x] 3.3 Build QuizContext with validation and persistence
+- [x] 3.4 Build QuizShell, ProgressBar, QuestionCard, AnswerOption, MultiSelectGrid, CurrencySelect
+- [x] 3.5 Q10 exclusivity ("scratch"), Q7 currency display
+- [x] 3.6 Section headers, transitions, selected-answer animation
+- [x] 3.7 Tests: validation, previous/next, answer changes, multi-select rules, refresh persistence, corrupt storage
+- [x] 3.8 Checkpoint
 
 ## Phase 4: Recommendation engine (R4, R5, AC4 to AC11)
 - [ ] 4.1 Define result types
