@@ -56,14 +56,14 @@ Each step ends with headless-browser screenshots, a colour scan, an update of th
 - [x] 4.8 Checkpoint (engine can be shown with a temporary debug view)
 
 ## Phase 5: Awakening and results (R6, R7, AC12)
-- [ ] 5.1 Build the 3D Awakening (design 11.5): AwakeningScene, 8 to 10 s GSAP timeline, Skip, sound toggle, lite 2D version, reduced-motion fade
-- [ ] 5.2 Build IdentityReveal and IdentityCard
-- [ ] 5.3 Build Results page: identity, scores, palette, budget info, styling advice
-- [ ] 5.4 Build RecommendationCard with reasons
-- [ ] 5.5 Buttons: Explore, Save, Retake (with confirm), Copy result
-- [ ] 5.6 Empty state when no result exists
-- [ ] 5.7 Tests: skip works at every stage, reveal ends within 10 s, result identical with any tier, results render from fixed answers, retake clears state
-- [ ] 5.8 Checkpoint
+- [x] 5.1 Build the 3D Awakening (design 11.5): AwakeningScene, 8 to 10 s GSAP timeline, Skip, sound toggle, lite 2D version, reduced-motion fade
+- [x] 5.2 Build IdentityReveal and IdentityCard
+- [x] 5.3 Build Results page: identity, scores, palette, budget info, styling advice
+- [x] 5.4 Build RecommendationCard with reasons
+- [x] 5.5 Buttons: Explore, Save, Retake (with confirm), Copy result
+- [x] 5.6 Empty state when no result exists
+- [x] 5.7 Tests: skip works at every stage, reveal ends within 10 s, result identical with any tier, results render from fixed answers, retake clears state
+- [x] 5.8 Checkpoint
 
 ## Phase 6: Atelier and Wardrobe Alchemist (R8, R9, AC10, AC18)
 - [ ] 6.1 Build CostumeCard, AtelierGrid, FilterPanel (mobile drawer)

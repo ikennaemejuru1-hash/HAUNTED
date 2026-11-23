@@ -7,7 +7,7 @@ import { Button, GlassPanel } from '../ui'
 import { ProgressBar } from './ProgressBar'
 import { QuestionCard } from './QuestionCard'
 
-// Where Awaken sends the user. The Awakening page is built in the next feature.
+// Where Awaken sends the user (the Awakening page).
 export const AWAKENING_PATH = '/awakening'
 
 export function QuizShell() {

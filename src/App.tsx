@@ -6,6 +6,8 @@ import { AppShell } from './components/layout/AppShell'
 const Home = lazy(() => import('./pages/Home'))
 const Discover = lazy(() => import('./pages/Discover'))
 const Quiz = lazy(() => import('./pages/Quiz'))
+const Awakening = lazy(() => import('./pages/Awakening'))
+const Results = lazy(() => import('./pages/Results'))
 const Atelier = lazy(() => import('./pages/Atelier'))
 const Grimoire = lazy(() => import('./pages/Grimoire'))
 const About = lazy(() => import('./pages/About'))
@@ -18,6 +20,8 @@ export const AppRoutes = () => (
       <Route index element={<Home />} />
       <Route path="discover" element={<Discover />} />
       <Route path="quiz" element={<Quiz />} />
+      <Route path="awakening" element={<Awakening />} />
+      <Route path="results" element={<Results />} />
       <Route path="atelier" element={<Atelier />} />
       <Route path="grimoire" element={<Grimoire />} />
       <Route path="about" element={<About />} />

@@ -118,3 +118,27 @@
     background: radial-gradient(closest-side, color-mix(in srgb, var(--color-obsidian) 80%, transparent) 0%, color-mix(in srgb, var(--color-obsidian) 55%, transparent) 55%, transparent 100%);
   }
 }
+
+/* Awakening: the sigil draws itself, and the lite scene's artefacts orbit the altar. */
+@layer components {
+  .sigil-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s ease-in-out;
+  }
+  .sigil-drawn .sigil-path { stroke-dashoffset: 0; }
+  .awaken-orbit {
+    transform-box: view-box;
+    transform-origin: 0 6px;
+    animation: awaken-sway 6s ease-in-out infinite alternate;
+  }
+  @keyframes awaken-sway {
+    from { transform: translateX(-4px) rotate(-3deg); }
+    to { transform: translateX(4px) rotate(3deg); }
+  }
+  @keyframes card-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card-rise { animation: card-rise 1s ease-out both; }
+}
