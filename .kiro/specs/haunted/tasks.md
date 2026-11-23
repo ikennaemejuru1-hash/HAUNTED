@@ -46,14 +46,14 @@ Each step ends with headless-browser screenshots, a colour scan, an update of th
 - [x] 3.8 Checkpoint
 
 ## Phase 4: Recommendation engine (R4, R5, AC4 to AC11)
-- [ ] 4.1 Define result types
-- [ ] 4.2 Write `data/identities.ts` (descriptions, palettes, advice, hybrid wording)
-- [ ] 4.3 Write the costume dataset (20 or more entries) and the dataset validation test
-- [ ] 4.4 Implement scoring, tie-breaks and hybrid naming
-- [ ] 4.5 Implement filters, wardrobe matching, ranking, relaxation, stretch options
-- [ ] 4.6 Implement reason generation
-- [ ] 4.7 Tests: a table of known answers and expected outputs, determinism, identity unaffected by Q7 to Q12, tight budget, no wardrobe, all-A to all-D
-- [ ] 4.8 Checkpoint (engine can be shown with a temporary debug view)
+- [x] 4.1 Define result types
+- [x] 4.2 Write `data/identities.ts` (descriptions, palettes, advice, hybrid wording)
+- [x] 4.3 Write the costume dataset (20 or more entries) and the dataset validation test
+- [x] 4.4 Implement scoring, tie-breaks and hybrid naming
+- [x] 4.5 Implement filters, wardrobe matching, ranking, relaxation, stretch options
+- [x] 4.6 Implement reason generation
+- [x] 4.7 Tests: a table of known answers and expected outputs, determinism, identity unaffected by Q7 to Q12, tight budget, no wardrobe, all-A to all-D
+- [x] 4.8 Checkpoint (engine can be shown with a temporary debug view)
 
 ## Phase 5: Awakening and results (R6, R7, AC12)
 - [ ] 5.1 Build the 3D Awakening (design 11.5): AwakeningScene, 8 to 10 s GSAP timeline, Skip, sound toggle, lite 2D version, reduced-motion fade

@@ -8,6 +8,7 @@ export interface AssetManifest {
   doorwayBackplate: string | null
   portraits: Record<'velvet-enigma' | 'arcane-wanderer' | 'crimson-phantom' | 'neon-revenant', string | null>
   socialPreview: string | null
+  costumes: Record<string, string | null>
 }
 
 export const assets: AssetManifest = {
@@ -22,4 +23,30 @@ export const assets: AssetManifest = {
     'neon-revenant': null, // B4
   },
   socialPreview: null, // D1
+  costumes: {
+    'velvet-champagne-spectre': null,
+    'velvet-salon-host': null,
+    'velvet-gilded-widow': null,
+    'velvet-mirror-muse': null,
+    'velvet-masquerade-courtier': null,
+    'velvet-opera-ghost': null,
+    'arcane-lantern-wanderer': null,
+    'arcane-hedge-scholar': null,
+    'arcane-rune-keeper': null,
+    'arcane-forest-oracle': null,
+    'arcane-spellbinder-cloak': null,
+    'arcane-grimoire-archivist': null,
+    'crimson-candle-ghost': null,
+    'crimson-torn-lace-bride': null,
+    'crimson-chapel-phantom': null,
+    'crimson-half-mask-duelist': null,
+    'crimson-weeping-saint': null,
+    'crimson-thorn-queen': null,
+    'neon-static-ghost': null,
+    'neon-glow-revenant': null,
+    'neon-circuit-wraith': null,
+    'neon-ember-android': null,
+    'neon-cyber-lantern': null,
+    'neon-chrome-reaper': null,
+  },
 }

@@ -1,5 +1,5 @@
 import { budgetLabel } from '../../data/currency'
-import { useQuiz } from '../../state/QuizContext'
+import { useQuiz } from '../../state/quizContextValue'
 import type { BudgetTier, Question, SingleKey, WardrobeItem } from '../../types/quiz'
 import { AnswerOption } from './AnswerOption'
 import { CurrencySelect } from './CurrencySelect'

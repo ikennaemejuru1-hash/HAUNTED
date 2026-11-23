@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { QUESTIONS } from '../../data/questions'
-import { useQuiz } from '../../state/QuizContext'
+import { useQuiz } from '../../state/quizContextValue'
 import { TOTAL } from '../../state/quizLogic'
 import { Button, GlassPanel } from '../ui'
 import { ProgressBar } from './ProgressBar'

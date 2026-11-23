@@ -1,23 +1,9 @@
-import { createContext, useCallback, useContext, useMemo, type ReactNode } from 'react'
+import { useCallback, useMemo, type ReactNode } from 'react'
 import { QUESTIONS } from '../data/questions'
 import { useLocalStorage } from '../hooks/useLocalStorage'
-import type { Currency, QuizAnswers, QuizState, SingleKey, WardrobeItem } from '../types/quiz'
+import type { Currency, QuizState, SingleKey, WardrobeItem } from '../types/quiz'
+import { QuizContext, type QuizContextValue } from './quizContextValue'
 import { QUIZ_KEY, TOTAL, initialState, isAnswered, setSingle, toggleWardrobe, validateState } from './quizLogic'
-
-interface QuizContextValue {
-  answers: QuizAnswers
-  step: number
-  canNext: boolean
-  isComplete: boolean
-  answer: (key: SingleKey, value: string) => void
-  toggleItem: (item: WardrobeItem) => void
-  setCurrency: (c: Currency) => void
-  next: () => void
-  prev: () => void
-  reset: () => void
-}
-
-const QuizContext = createContext<QuizContextValue | null>(null)
 
 // Holds the answers and the current question, and saves them so a refresh keeps progress (R3.7).
 export function QuizProvider({ children }: { children: ReactNode }) {
@@ -55,10 +41,4 @@ export function QuizProvider({ children }: { children: ReactNode }) {
     [answers, step, answer, toggleItem, setCurrency, next, prev, reset],
   )
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>
-}
-
-export function useQuiz(): QuizContextValue {
-  const ctx = useContext(QuizContext)
-  if (!ctx) throw new Error('useQuiz must be used inside QuizProvider')
-  return ctx
 }
