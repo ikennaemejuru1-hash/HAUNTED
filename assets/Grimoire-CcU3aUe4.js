@@ -1,1 +1,0 @@
-import{t as e}from"./ComingSoon-Bako1q6B.js";import{o as t}from"./index-CZx-rvr4.js";var n=t();function r(){return(0,n.jsx)(e,{title:`Your Grimoire is empty for now`,phase:`Phase 7`})}export{r as default};
