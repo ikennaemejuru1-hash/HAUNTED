@@ -1,0 +1,144 @@
+/* Fonts are bundled with the app (no requests to Google), which protects visitor privacy. */
+@import '@fontsource-variable/cinzel';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import 'tailwindcss';
+
+/*
+  Design tokens. Tailwind 4 reads them from here instead of tailwind.config.ts.
+  A name like --color-gold creates classes such as bg-gold, text-gold, border-gold.
+  Palette is fixed by the spec: no purple, violet or blue.
+*/
+@theme {
+  --color-obsidian: #0a0908; /* main background */
+  --color-charcoal: #1e1b1c; /* panels and depth */
+  --color-burgundy: #641b35; /* horror details; text on it must be silver */
+  --color-gold: #c5a15b; /* primary accent */
+  --color-ember: #e87524; /* selective highlights, glows, selected states */
+  --color-ash: #8a8786; /* labels, secondary text, thin edges */
+  --color-silver: #cfcbc6; /* body text */
+
+  --font-display: 'Cinzel Variable', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-tech: 'Space Grotesk Variable', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-obsidian);
+    color: var(--color-silver);
+    font-family: var(--font-body);
+    /* Stops iOS from enlarging text unexpectedly. */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px; /* the smallest screen we design for */
+    min-height: 100vh;
+    overflow-x: hidden; /* guards against sideways scrolling */
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-gold);
+    letter-spacing: 0.02em;
+  }
+
+  /* One focus ring for every interactive element: 2px gold with a 2px gap. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Text selection stays on-palette. */
+  ::selection {
+    background: var(--color-burgundy);
+    color: var(--color-silver);
+  }
+
+  /* Anyone who asks their device for less motion gets almost none. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Small helper classes reused by many components. */
+@layer components {
+  /* Labels, badges, progress text: uppercase, spaced out, Space Grotesk. */
+  .label-tech {
+    font-family: var(--font-tech);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    color: var(--color-ash);
+  }
+}
+
+/* Hero atmosphere, built from tokens. These sit behind the text. */
+@layer components {
+  /* Dramatic burgundy light from above, like a spotlight in a dark theatre. */
+  .hero-light {
+    background:
+      radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--color-burgundy) 75%, transparent), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--color-charcoal) 90%, transparent), transparent 70%);
+  }
+  /* Darkens the corners like a film frame. */
+  .hero-vignette {
+    background: radial-gradient(ellipse at center, transparent 45%, var(--color-obsidian) 100%);
+  }
+  /* A soft dark halo keeps text readable over the artwork. */
+  .hero-text-shadow {
+    text-shadow: 0 1px 2px var(--color-obsidian);
+  }
+
+  /* Slow CSS fog for the lite tier and the poster. Three soft layers drift at different speeds. */
+  .fog-layer {
+    position: absolute;
+    inset: -10% -30%;
+    background: radial-gradient(ellipse at 30% 60%, color-mix(in srgb, var(--color-ash) 22%, transparent), transparent 55%),
+      radial-gradient(ellipse at 75% 40%, color-mix(in srgb, var(--color-ash) 16%, transparent), transparent 50%);
+    animation: fog-drift 60s linear infinite alternate;
+  }
+  .fog-a { opacity: 0.8; }
+  .fog-b { opacity: 0.55; animation-duration: 90s; animation-direction: alternate-reverse; top: 10%; }
+  .fog-c { opacity: 0.4; animation-duration: 120s; top: 25%; }
+  @keyframes fog-drift {
+    from { transform: translateX(-6%); }
+    to { transform: translateX(6%); }
+  }
+
+  /* A soft obsidian pool behind a block of text over the scene, so contrast stays high. */
+  .text-scrim {
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-obsidian) 80%, transparent) 0%, color-mix(in srgb, var(--color-obsidian) 55%, transparent) 55%, transparent 100%);
+  }
+}
+
+/* Awakening: the sigil draws itself, and the lite scene's artefacts orbit the altar. */
+@layer components {
+  .sigil-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s ease-in-out;
+  }
+  .sigil-drawn .sigil-path { stroke-dashoffset: 0; }
+  .awaken-orbit {
+    transform-box: view-box;
+    transform-origin: 0 6px;
+    animation: awaken-sway 6s ease-in-out infinite alternate;
+  }
+  @keyframes awaken-sway {
+    from { transform: translateX(-4px) rotate(-3deg); }
+    to { transform: translateX(4px) rotate(3deg); }
+  }
+  @keyframes card-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card-rise { animation: card-rise 1s ease-out both; }
+}
