@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '../../utils/cn'
 
@@ -24,7 +24,7 @@ interface CommonProps {
 type ButtonProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'> & { to?: undefined }
 
-type LinkButtonProps = CommonProps & { to: string; onClick?: () => void }
+type LinkButtonProps = CommonProps & { to: string; onClick?: (e: MouseEvent<HTMLAnchorElement>) => void }
 
 // Renders a real <button>, or a router <Link> that looks like a button when `to` is given.
 // Links navigate and buttons act, so each uses the right HTML element for screen readers.

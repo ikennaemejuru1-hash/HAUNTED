@@ -1,6 +1,9 @@
 import { Suspense, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { LoadingState } from '../ui'
+import { FxProvider } from '../../three/FxProvider'
+import { PosterBackdrop } from '../../three/PosterBackdrop'
+import { WorldHost } from '../../three/WorldHost'
 import { Footer } from './Footer'
 import { Navigation } from './Navigation'
 
@@ -14,7 +17,11 @@ export function AppShell() {
   }, [pathname])
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <FxProvider>
+    {/* isolate keeps the fixed backdrop and 3D canvas (z -10) behind the page but above the page colour. */}
+    <div className="relative isolate flex min-h-screen flex-col">
+      <PosterBackdrop />
+      <WorldHost />
       {/* Lets keyboard users jump past the menu. Hidden until focused. */}
       <a
         href="#main"
@@ -35,5 +42,6 @@ export function AppShell() {
       </main>
       <Footer />
     </div>
+    </FxProvider>
   )
 }

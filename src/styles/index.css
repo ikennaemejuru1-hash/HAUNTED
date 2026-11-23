@@ -96,21 +96,25 @@
   .hero-text-shadow {
     text-shadow: 0 1px 2px var(--color-obsidian);
   }
-  /* A faint gold moon with a soft halo. Kept small and dim so it never competes with text. */
-  /* Hidden on small screens, where it would overlap the heading. */
-  .hero-moon {
-    display: none;
-    top: 9%;
-    right: 8%;
-    width: clamp(56px, 8vw, 96px);
-    aspect-ratio: 1;
-    border-radius: 9999px;
-    background: radial-gradient(circle, color-mix(in srgb, var(--color-gold) 32%, transparent) 0%, color-mix(in srgb, var(--color-gold) 20%, transparent) 100%);
-    box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--color-gold) 45%, transparent),
-      0 0 60px 20px color-mix(in srgb, var(--color-gold) 14%, transparent);
+
+  /* Slow CSS fog for the lite tier and the poster. Three soft layers drift at different speeds. */
+  .fog-layer {
+    position: absolute;
+    inset: -10% -30%;
+    background: radial-gradient(ellipse at 30% 60%, color-mix(in srgb, var(--color-ash) 22%, transparent), transparent 55%),
+      radial-gradient(ellipse at 75% 40%, color-mix(in srgb, var(--color-ash) 16%, transparent), transparent 50%);
+    animation: fog-drift 60s linear infinite alternate;
   }
-  @media (min-width: 1024px) {
-    .hero-moon { display: block; }
+  .fog-a { opacity: 0.8; }
+  .fog-b { opacity: 0.55; animation-duration: 90s; animation-direction: alternate-reverse; top: 10%; }
+  .fog-c { opacity: 0.4; animation-duration: 120s; top: 25%; }
+  @keyframes fog-drift {
+    from { transform: translateX(-6%); }
+    to { transform: translateX(6%); }
+  }
+
+  /* A soft obsidian pool behind a block of text over the scene, so contrast stays high. */
+  .text-scrim {
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-obsidian) 80%, transparent) 0%, color-mix(in srgb, var(--color-obsidian) 55%, transparent) 55%, transparent 100%);
   }
 }

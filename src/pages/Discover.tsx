@@ -9,7 +9,9 @@ const facts = [
 // The Discovery Introduction (R2.4). Start leads to the quiz, which is built in Phase 3.
 export default function Discover() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+    <div className="mx-auto max-w-3xl px-4 py-16">
+     {/* The doorway glow is the page backdrop (PosterBackdrop). The content sits on its own panel. */}
+     <GlassPanel className="bg-obsidian/75 px-5 py-10 text-center sm:px-10">
       <p className="label-tech">Before you begin</p>
       <h1 className="mt-2 text-4xl">Discover Your Dark Side</h1>
       <p className="mx-auto mt-4 max-w-xl text-lg">
@@ -33,6 +35,7 @@ export default function Discover() {
       <div className="mt-8 flex justify-center">
         <Button to="/quiz">Start the quiz</Button>
       </div>
+     </GlassPanel>
     </div>
   )
 }

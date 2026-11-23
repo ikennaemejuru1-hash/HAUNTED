@@ -27,13 +27,13 @@ Each step ends with headless-browser screenshots, a colour scan, an update of th
 - [x] 2R.1 Update requirements, design and steering for the redesign
 - [ ] 2R.2 Write `docs/ASSET_BRIEF.md` (prompts, sizes, formats, rules) and present it for review
 - [ ] 2R.3 Early GitHub Pages preview on the `gh-pages` branch (relative base, deploy script)
-- [ ] 2R.4 3D foundation: install Three, R3F, Drei, GSAP; `WorldCanvas`, `SceneDirector`, `quality.ts` (+ tests), `palette.ts` (+ no-blue test), poster fallback, CSS fog, reduced motion, context-loss handling, Visual effects Full/Lite setting
-- [ ] 2R.5 Atmosphere: layered fog shader, embers, dust motes, candle flames, lighting, post effects on the full tier. **Checkpoint: visual review**
-- [ ] 2R.6 Threshold scene: procedural gate, arches, pillars; scroll camera (GSAP ScrollTrigger); chapters 0 to 3 aligned with the HTML sections; scrims for text. **Checkpoint: major visual review**
-- [ ] 2R.7 The four artefacts, ArtefactRig, focus/hover/tap responses, four sigils, Explore Styles chapter. **Checkpoint: visual review**
-- [ ] 2R.8 Doorway push transition into Discover; Discover page restyled to match
+- [x] 2R.4 3D foundation: install Three, R3F, Drei, GSAP; `WorldCanvas`, `SceneDirector`, `quality.ts` (+ tests), `palette.ts` (+ no-blue test), poster fallback, CSS fog, reduced motion, context-loss handling, Visual effects Full/Lite setting
+- [x] 2R.5 Atmosphere: layered fog shader, embers, dust motes, candle flames, lighting, post effects on the full tier. **Checkpoint: visual review**
+- [x] 2R.6 Threshold scene: procedural gate, arches, pillars; scroll camera (GSAP ScrollTrigger); chapters 0 to 3 aligned with the HTML sections; scrims for text. **Checkpoint: major visual review**
+- [x] 2R.7 The four artefacts, ArtefactRig, focus/hover/tap responses, four sigils, Explore Styles chapter. **Checkpoint: visual review**
+- [x] 2R.8 Doorway push transition into Discover; Discover page restyled to match
 - [ ] 2R.9 Integrate the owner's generated assets (process, colour scan, swap placeholders)
-- [ ] 2R.10 Measure: bundle sizes, Lighthouse lite and full, record in `docs/PERFORMANCE.md`; finish 2.7 routes. **Checkpoint: Phase 2 approval**
+- [~] 2R.10 Measure (bundle sizes recorded in `docs/PERFORMANCE.md`; Lighthouse and 2.7 still open): bundle sizes, Lighthouse lite and full, record in `docs/PERFORMANCE.md`; finish 2.7 routes. **Checkpoint: Phase 2 approval**
 
 ## Phase 3: Interactive quiz (R3, AC1 to AC3)
 - [ ] 3.1 Define quiz types and the 12 questions in `data/questions.ts`

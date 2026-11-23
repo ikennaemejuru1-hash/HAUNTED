@@ -1,4 +1,34 @@
 import { Link } from 'react-router-dom'
+import { useFx } from '../../three/fxContext'
+import { cn } from '../../utils/cn'
+
+// Visual effects switch (R15.9). Full and Balanced both count as "Full"; the choice is remembered.
+function EffectsSwitch() {
+  const { tier, setPreference } = useFx()
+  const options = [
+    { label: 'Full', value: 'full' as const, on: tier !== 'lite' },
+    { label: 'Lite', value: 'lite' as const, on: tier === 'lite' },
+  ]
+  return (
+    <div role="group" aria-label="Visual effects" className="mt-4 flex flex-wrap items-center gap-2">
+      <span className="label-tech">Visual effects</span>
+      {options.map((o) => (
+        <button
+          key={o.value}
+          type="button"
+          aria-pressed={o.on}
+          onClick={() => setPreference(o.value)}
+          className={cn(
+            'min-h-11 min-w-16 rounded-sm border px-4 font-tech text-xs uppercase tracking-[0.14em]',
+            o.on ? 'border-gold bg-burgundy text-silver' : 'border-ash/50 text-silver hover:border-gold hover:text-gold',
+          )}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  )
+}
 
 export function Footer() {
   return (
@@ -11,6 +41,7 @@ export function Footer() {
             Identities are creative styling profiles for fun. They do not measure real
             personality. Costs shown are estimates.
           </p>
+          <EffectsSwitch />
         </div>
         <nav aria-label="Footer">
           <ul className="flex flex-wrap gap-x-6">

@@ -22,12 +22,14 @@ const steps = [
 export function HowItWorks() {
   return (
     <section id="how-it-works" tabIndex={-1} aria-labelledby="how-heading" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-20 outline-none">
-      <p className="label-tech text-center">Three steps</p>
-      <h2 id="how-heading" className="mt-2 text-center text-3xl sm:text-4xl">How It Works</h2>
+      <div className="text-scrim mx-auto max-w-md px-4 py-4 text-center">
+        <p className="label-tech">Three steps</p>
+        <h2 id="how-heading" className="mt-2 text-3xl sm:text-4xl">How It Works</h2>
+      </div>
       <ol className="mt-10 grid gap-6 md:grid-cols-3">
         {steps.map(({ icon: Icon, title, text }, i) => (
           <li key={title}>
-            <GlassPanel className="h-full p-6">
+            <GlassPanel className="h-full bg-obsidian/70 p-6">
               <div className="flex items-center gap-3">
                 <span className="font-display text-3xl text-ember" aria-hidden="true">{i + 1}</span>
                 <Icon className="text-gold" aria-hidden="true" />

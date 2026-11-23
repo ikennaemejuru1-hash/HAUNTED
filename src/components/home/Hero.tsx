@@ -1,11 +1,12 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Button } from '../ui'
-import { HeroArt } from '../art/HeroArt'
+import { useDoorway } from '../../three/useDoorway'
 import { scrollToSection } from '../../utils/scroll'
 
 export function Hero() {
   const reduce = useReducedMotion()
+  const push = useDoorway('/discover')
   // Text rises gently into place. With reduced motion it simply appears.
   const rise = (delay: number) =>
     reduce
@@ -19,22 +20,9 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden"
+      className="relative flex min-h-[calc(100svh-4rem)] flex-col"
     >
-      {/* Decorative layers sit behind the text (z-index below content). */}
-      <div
-        aria-hidden="true"
-        className="hero-light absolute inset-0 -z-10"
-      />
-      {/* Vignette: darkens the corners like a film frame. */}
-      <div
-        aria-hidden="true"
-        className="hero-vignette absolute inset-0 -z-10"
-      />
-      {/* The moon: a soft CSS glow (no hard edges) high on the right, away from the text. */}
-      <div aria-hidden="true" className="hero-moon absolute -z-10" />
-
-      <div className="relative mx-auto flex w-full max-w-4xl flex-1 flex-col justify-center px-4 pb-6 pt-14 text-center">
+      <div className="text-scrim relative mx-auto my-auto flex w-full max-w-3xl flex-col justify-center px-6 py-14 text-center">
         <motion.p className="label-tech" {...rise(0)}>
           Kiroween 2026 · Costume discovery
         </motion.p>
@@ -54,7 +42,7 @@ export function Hero() {
           Discover the Halloween look that matches your personality, aesthetic and imagination.
         </motion.p>
         <motion.div className="mt-8 flex flex-col items-center gap-4" {...rise(0.4)}>
-          <Button to="/discover" className="w-full max-w-xs">
+          <Button to="/discover" onClick={push} className="w-full max-w-xs">
             DISCOVER YOUR DARK SIDE
           </Button>
           <nav aria-label="On this page" className="flex flex-wrap justify-center gap-x-6">
@@ -80,10 +68,6 @@ export function Hero() {
             </Link>
           </nav>
         </motion.div>
-      </div>
-      {/* Skyline band: its own space at the bottom, so it never overlaps the text. */}
-      <div className="h-[clamp(120px,22vh,220px)] shrink-0">
-        <HeroArt />
       </div>
     </section>
   )

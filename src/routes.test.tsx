@@ -23,6 +23,32 @@ describe('routes (R1, R2)', () => {
     ctas.forEach((cta) => expect(cta).toHaveAttribute('href', '/discover'))
   })
 
+  it('home runs the lite tier without WebGL: no canvas, poster backdrop and a working effects switch', async () => {
+    renderAt('/')
+    await screen.findByRole('heading', { level: 1, name: 'YOUR ALTER EGO IS WAITING.' })
+    expect(screen.queryByTestId('world')).not.toBeInTheDocument()
+    expect(document.querySelector('canvas')).toBeNull()
+    expect(screen.getByRole('button', { name: 'Lite' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'Full' })).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('home has the four chapters and four identity controls', async () => {
+    renderAt('/')
+    expect(await screen.findByRole('heading', { name: 'How It Works' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Explore Styles' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Step through' })).toBeInTheDocument()
+    expect(screen.getAllByRole('button', { name: /^The (Velvet|Arcane|Crimson|Neon)/ })).toHaveLength(4)
+  })
+
+  it('tapping an identity pins it and tapping again releases it', async () => {
+    renderAt('/')
+    const card = await screen.findByRole('button', { name: /The Velvet Enigma/ })
+    await userEvent.click(card)
+    expect(card).toHaveAttribute('aria-pressed', 'true')
+    await userEvent.click(card)
+    expect(card).toHaveAttribute('aria-pressed', 'false')
+  })
+
   it.each([
     ['/discover', 'Discover Your Dark Side'],
     ['/quiz', 'The quiz is on its way'],
